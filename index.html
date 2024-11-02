@@ -2,52 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="asset/img/favicon.png"  >
+    <link rel="icon" href="asset/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>short</title>
+    <title>短链接生成</title>
     <style>
       :root {
-        --color-primary: #5c7cfa;
-        --color-primary-dark: #4263eb;
-        --color-primary-alpha: #5c7cfa50;
-
-        --body-color: #495057;
-        --body-bg: #f8f9fa;
-
-        --border-color: #dee2e6;
+        --color-primary: #6366f1;
+        --color-primary-dark: #4f46e5;
+        --color-primary-alpha: #6366f150;
+        --body-color: #334155;
+        --body-bg: #f8fafc;
+        --border-color: #e2e8f0;
       }
 
       body {
-        max-width: 30rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 2rem;
-        padding-right: 2rem;
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 2rem;
         color: var(--body-color);
         background: var(--body-bg);
         font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        text-rendering: optimizelegibility;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
 
       a {
         color: var(--color-primary);
         text-decoration: none;
-        transition: color .3s;
+        transition: all 0.2s;
       }
 
       a:hover {
-        color: var(--color-primary);
+        color: var(--color-primary-dark);
         text-decoration: underline;
       }
 
       h1 {
-        font-size: 5rem;
-        font-weight: 300;
+        font-size: 4rem;
+        font-weight: 700;
         text-align: center;
-        opacity: .2;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin: 2rem 0;
       }
 
       main[x-cloak] {
@@ -56,48 +54,48 @@
 
       main:not([x-cloak]) {
         opacity: 1;
-        transition: opacity .3s;
+        transition: opacity 0.3s ease;
       }
 
       input {
-        -webkit-appearance: none;
-        appearance: none;
-        display: block;
         width: 100%;
-        padding: .5rem 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: .25rem;
-        box-sizing: border-box;
-        color: #33404d;
-        line-height: inherit;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        background: white;
+        color: var(--body-color);
         font-size: 1rem;
-        transition: border .3s, box-shadow .3s;
+        transition: all 0.2s;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
 
       input:focus {
-        box-shadow: 0 0 0 .25rem var(--color-primary-alpha);
         border-color: var(--color-primary);
-        outline: 0;
+        box-shadow: 0 0 0 3px var(--color-primary-alpha);
+        outline: none;
       }
 
       details {
-        margin: 1rem 0 2rem;
-        border: 1px solid var(--border-color);
-        border-radius: .25rem;
-        transition: background .3s;
+        margin: 1.5rem 0 2rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        background: white;
+        transition: all 0.2s;
       }
 
       details[open] {
-        background: #fff;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
 
       details summary {
-        padding: .5rem 1rem;
-        font-weight: 500;
-        user-select: none;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
         cursor: pointer;
-        opacity: .8;
-        outline: 0;
+        user-select: none;
+      }
+
+      details summary:hover {
+        background: var(--body-bg);
       }
 
       details div {
@@ -106,118 +104,120 @@
       }
 
       details small {
-        margin: 0;
-        font-size: .875rem;
-        line-height: 2;
+        display: block;
+        margin-top: 0.5rem;
+        color: #64748b;
       }
 
       button {
-        appearance: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 100%;
-        margin-bottom: 5rem;
-        padding: .5rem .75rem;
-        border: 1px solid var(--color-primary);
-        border-radius: .25rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
         background: var(--color-primary);
-        color: #fff;
+        color: white;
         font-size: 1rem;
-        font-weight: 500;
-        line-height: inherit;
+        font-weight: 600;
         cursor: pointer;
-        user-select: none;
-        transition: border .3s, background .3s,;
+        transition: all 0.2s;
+        margin: 2rem 0;
       }
 
-      button:hover {
-        border-color: var(--color-primary-dark);
+      button:hover:not(:disabled) {
         background: var(--color-primary-dark);
+        transform: translateY(-1px);
       }
 
       button:focus {
-        box-shadow: 0 0 0 .25rem var(--color-primary-alpha);
-        border-color: var(--color-primary);
-        outline: 0;
+        box-shadow: 0 0 0 3px var(--color-primary-alpha);
+        outline: none;
       }
 
       button:disabled {
-        background: var(--color-primary);
-        border-color: var(--color-primary);
-        opacity: .6;
+        opacity: 0.7;
         cursor: not-allowed;
       }
 
-      button.loading::before {
-        content: '';
-        display: inline-block;
-        margin-right: .5rem;
-        border: 2px solid #fff;
-        border-top-color: transparent;
-        border-bottom-color: transparent;
+      button.loading {
+        position: relative;
+        color: transparent;
+      }
+
+      button.loading::after {
+        content: "";
+        position: absolute;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid white;
         border-radius: 50%;
-        width: .75rem;
-        height: .75rem;
-        animation: rotate .5s linear infinite;
-      }
-
-      footer {
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-        text-align: center;
-        opacity: .5;
-      }
-
-      footer i {
-        font-style: normal;
-        color: #ff8787;
+        border-right-color: transparent;
+        animation: spin 0.8s linear infinite;
       }
 
       .success,
       .error {
-        margin-bottom: 1rem;
-        padding: .5rem 1rem;
-        border-radius: .25rem;
-        color: #fff;
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
         text-align: center;
-        opacity: 1;
-        transition: opacity .3s;
       }
 
       .success {
-        border: 1px solid #12b886;
-        background: #38d9a9;
+        background: #ecfdf5;
+        color: #059669;
+        border: 1px solid #10b981;
       }
 
       .error {
-        border: 1px solid #fa5252;
-        background: #ff8787;
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #ef4444;
       }
 
-      @keyframes rotate {
-        100% {
+      footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        color: #64748b;
+      }
+
+      @keyframes spin {
+        to {
           transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 1rem;
+        }
+        
+        h1 {
+          font-size: 3rem;
         }
       }
     </style>
   </head>
   <body>
-    <header><h1>short</h1></header>
+    <header><h1>URL Shortener</h1></header>
     <main x-data="app" x-cloak>
       <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
-      <input placeholder="输入要缩短的网址..." x-model="url" x-ref="url" />
+      <input placeholder="输入长链接..." x-model="url" x-ref="url" />
       <details>
-        <summary>自定义设置</summary>
+        <summary>高级设置</summary>
         <div>
-          <input placeholder="slug" x-model="slug" />
-          <small>Slug 默认是随机生成的短 id。</small>
+          <input placeholder="自定义短链接后缀" x-model="slug" />
+          <small>不填写则自动生成随机短链接</small>
         </div>
       </details>
-      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
+      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">
+        生成短链接
+      </button>
     </main>
     <footer>
-     service
+      <p>安全可靠的短链接服务</p>
     </footer>
     <script src="asset/js/alpine.js"></script>
     <script>
@@ -231,12 +231,12 @@
         },
         submit ($refs, $nextTick) {
           if (!this.url) {
-            this.alert = { type: 'error', message: '缺少必需的参数：url。' }
+            this.alert = { type: 'error', message: '请输入需要转换的链接' }
             return
           }
 
           if (this.isValidated()) {
-            this.alert = { type: 'error', message: '非法格式：url。' }
+            this.alert = { type: 'error', message: '请输入有效的URL地址' }
             return
           }
 
@@ -263,11 +263,11 @@
 
               $nextTick(() => {
                 $refs.url.select()
-                this.alert = { type: 'success', message: `链接 ${document.execCommand('Copy') ? '复制' : '生成'} ` }
+                this.alert = { type: 'success', message: `短链接已${document.execCommand('Copy') ? '复制到剪贴板' : '生成'}` }
               })
             })
             .catch(e => {
-              this.alert = { type: 'error', message: e.message }
+              this.alert = { type: 'error', message: '生成失败,请稍后重试' }
               this.loading = false
             })
         }
